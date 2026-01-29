@@ -57,7 +57,7 @@ oot@master:~# ping -c 3 168.126.63.1
 PING 168.126.63.1 (168.126.63.1) 자료의 56(84) 바이트.
 64 바이트 (168.126.63.1에서): icmp_seq=1 ttl=128 시간=6.18 ms
 64 바이트 (168.126.63.1에서): icmp_seq=2 ttl=128 시간=6.33 ms
-^C
+
 --- 168.126.63.1 ping 통계 ---
 2 패킷이 전송됨, 2 수신됨, 0% packet loss, time 1002ms
 rtt min/avg/max/mdev = 6.180/6.257/6.334/0.077 ms
@@ -78,7 +78,7 @@ Address: 2404:6800:4004:81a::2004
 root@master:~#
 ```
 
-먄약에 위와 같은 ping 테스트 및 nslookup 테스트가 안될 경우, 'nm-connection-editor &'을 실행하여 ip 주소 설정 내용을 확인하고 재설정합니다.
+만약에 위와 같은 ping 테스트 및 nslookup 테스트가 안될 경우, 'nm-connection-editor &'을 실행하여 ip 주소 설정 내용을 확인하고 재설정합니다.
 
 이더넷 → ens160 → IPv4 설정 → IP 주소 관련 설정 → 저장 → 닫기
 
@@ -210,7 +210,9 @@ sleep 3
 cd
 printf "⑩  sestatus 를 실시하여 SElinux 모드가 permissive 로 변경되었는지 확인하세요.\n"
 printf "⑪  systemctl status firewalld 를 실시하여 방화벽 상태가 inactive 으로 변경되었는지 확인하세요.\n"
-printf "⑫  cat .vimrc 를 실시하여 set 설정 내용이 저장되었는지 확인하세요.\n"
+printf "⑫  cat .vimrc 를 실시하여
+
+ set 설정 내용이 저장되었는지 확인하세요.\n"
 printf "⑬  cat .bashrc 를 실시하여 alias 설정과 PS1 환경 변수 내용이 저장되었는지 확인하세요.\n"
 printf "⑭  확인이 완료되었다면, init 0 명령을 실시하여 시스템을 정상 종료하세요.\n"
 printf "\n"
@@ -262,7 +264,7 @@ root@master:~#
 ```
 
 ```sh
-oot@master:~# cat /etc/hosts
+root@master:~# cat /etc/hosts
 # Loopback entries; do not change.
 # For historical reasons, localhost precedes localhost.localdomain:
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
@@ -276,4 +278,33 @@ oot@master:~# cat /etc/hosts
 192.168.2.63  node3.example.com  node3
 192.168.2.80  loadbalancer.examlple.com  loadbalancer
 root@master:~# 
+```
+
+```bash
+// node1, node2, node3, loadBalancer를 각각 master로 부터 clone하고 hostname을 변경한다.
+
+// node1
+root@master:~# hostnamectl set-hostname node1.example.com
+// node2
+root@master:~# hostnamectl set-hostname node2.example.com
+// node3
+root@master:~# hostnamectl set-hostname node3.example.com
+// node4
+root@master:~# hostnamectl set-hostname node4.example.com
+// loadbalancer
+root@master:~# hostnamectl set-hostname loadbalancer.example.com
+
+// 각각 node1 ~ 3, loadbalancer 까지 ip 주소 끝자리를 61,62,63,80으로 맞춘다
+root@master:~#  nmcli connection up ens160 // 맞춘 내용을 적용
+```
+
+3. SSH키 생성 및 배포
+
+앤서블과 'kubespray'를 이용하여 쿠버네티스를 설치할 예정이므로 master에서 SSH 키 생성을 생성하여 master를 포함한 node1~node3에 SSH키를 배포한다.
+
+> master에서 SSH키 생성 및 배포
+
+```bash
+[root@master ~]# ssh-keygen
+[root@master ~]# cat /root/.ssh/id_rsa
 ```
