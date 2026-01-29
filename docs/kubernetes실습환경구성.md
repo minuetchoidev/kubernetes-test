@@ -8,8 +8,6 @@
 
 ![1](../assets/vmnet8(nat).png)
 
-[VMware Workstation Pro 17]()
-
 [Centos Stream 9 'x86_64' 다운로드 (구글 검색: centos download)](https://www.centos.org/download)
 
 [MobaXterm Home Edition 'Portable editinon' 다운로드 (구글 검색: MobraXterm homeedition download)](https://mobaxterm.mobatek.net/download-home-edition.html)
