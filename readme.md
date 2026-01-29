@@ -1,7 +1,7 @@
 # 목차
 
 1. [제1장 Kubernetes 실습 환경 구성](./docs/kubernetes실습환경구성.md)
-1. [제2장 minikube 설치]()
+1. [제2장 minikube 설치](./docs/minikube설치.md)
 1. [제3장 Kubernetes 설치]()
 1. [제4장 Kubernetes 컨테이너 실행하기]()
 1. [제5장 Kubernetes 아키텍처]()
