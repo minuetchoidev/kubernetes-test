@@ -352,5 +352,12 @@ root@node3's password:
 Number of key(s) added: 1
 
 Now try logging into the machine, with: "ssh 'node1'"
-and check to make sure that only the key(s) you wanted were added.
+and check to make sure that only the key(s) you wanted were added
 ```
+
+node1 ~ node3 'multi-user.target' 모드 전환
+
+'multi-user.target'로 전환하면, 그래픽 모드를 사용하지 않기 때문에 CPU 사용률이 내려간다.
+
+# systemctl set-default multi-user.target
+# systemctl isolate multi-user.target
