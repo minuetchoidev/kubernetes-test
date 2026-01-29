@@ -305,6 +305,52 @@ root@master:~#  nmcli connection up ens160 // 맞춘 내용을 적용
 > master에서 SSH키 생성 및 배포
 
 ```bash
-[root@master ~]# ssh-keygen
-[root@master ~]# cat /root/.ssh/id_rsa
+[root@master ~]# ssh-keygen 
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/root/.ssh/id_ed25519): 
+Enter passphrase for "/root/.ssh/id_ed25519" (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/id_ed25519
+Your public key has been saved in /root/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:ZvFD5jgpyVopRyAehEI0SsWcpwS4x/RIEG++L4v+Px8 root@master.example.com
+The key's randomart image is:
++--[ED25519 256]--+
+|*@O.o            |
+|*o+B o           |
+|o==oo . . o      |
+|.o+..o o O       |
+| .. . B S +      |
+|   . = + . .     |
+|  . .  E         |
+| ... .  .        |
+|o.o+o.o.         |
++----[SHA256]-----+
+[root@master ~/.ssh]# pwd
+/root/.ssh
+[root@master ~/.ssh]# ls -al
+합계 12
+drwx------.  2 root root   46 2026-01-29 13:52 .
+dr-xr-x---. 15 root root 4096 2026-01-29 12:01 ..
+-rw-------.  1 root root  419 2026-01-29 13:52 id_ed25519
+-rw-r--r--.  1 root root  105 2026-01-29 13:52 id_ed25519.pub
+[root@master ~/.ssh]#
+// 아래 명령어를 node1 ~ 3까지 진행
+[root@master ~/.ssh]# ssh-copy-id node1
+usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: ssh-add -L
+The authenticity of host 'node3 (192.168.2.63)' can't be established.
+ED25519 key fingerprint is SHA256:ITlQT//aRRW++6f5iAaPtWqP0kOgEnJsUhOk0GrP/iw.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: master
+    ~/.ssh/known_hosts:4: node1
+    ~/.ssh/known_hosts:5: node2
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+root@node3's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with: "ssh 'node1'"
+and check to make sure that only the key(s) you wanted were added.
 ```
