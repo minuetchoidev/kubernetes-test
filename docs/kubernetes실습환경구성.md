@@ -23,4 +23,3 @@
 | Hard Disk | 30GB |
 | CD/DVD | CentOS-Stream-10-lastest-x86_64_dvd1.iso |
 | Network Adapter | NAT(Vmnet8) |
-
